@@ -4,7 +4,10 @@
   "description": "Backend for School Management",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node build/src/index.js",
+    "start_dev": "nodemon --legacy-watch --ext ts,js src/index.ts",
+    "build": "tsc",
+    "test": "jest src --runInBand --forceExit"
   },
   "repository": {
     "type": "git",
@@ -22,8 +25,8 @@
   },
   "homepage": "https://github.com/charan94/school-management#readme",
   "dependencies": {
+    "@types/jest": "^26.0.23",
     "bcryptjs": "^2.4.3",
-    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -31,12 +34,14 @@
     "helmet": "^4.6.0",
     "inversify": "^5.1.1",
     "inversify-inject-decorators": "^3.1.0",
+    "jest": "^27.0.6",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "passport": "^0.4.1",
     "passport-http-bearer": "^1.0.1",
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
+    "ts-jest": "^27.0.3",
     "typeorm": "^0.2.32",
     "winston": "^3.3.3",
     "winston-transport": "^4.4.0"

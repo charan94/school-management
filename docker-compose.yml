@@ -1,0 +1,42 @@
+version: '3.7'
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - ./server/src:/app/src
+    environment:
+      PROJECT_NAME: 'School Management'
+      JWT_KEY: 'sec$Et10231819821^%&'
+      JWT_TOKEN_EXPIRY: '3600'
+      IS_PRODUCTION: 'false'
+      CURRENT_VERSION: '1.0'
+      BASE_URL: 'http://localhost:8080/api'
+      FRONTEND_DOMAIN_NAME: 'http://localhost:3000'
+      MONGODB_CONN_URL: 'mongodb://db:27017/schooldb'
+    depends_on:
+      - db
+  client:
+    build:
+      context: ./client
+    ports:
+      - '3000:3000'
+    environment:
+      REACT_APP_CURRENT_VERSION: '1'
+      REACT_APP_API_URL: 'http://localhost:8080/api'
+    volumes:
+      - ./client/src:/app/src
+    stdin_open: true
+    depends_on:
+      - server
+  db:
+    image: library/mongo:4.4
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    restart: always
+    ports:
+      - '27017:27017'

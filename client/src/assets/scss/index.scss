@@ -1,0 +1,15 @@
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "../css/fontawesome/css/all.min.css";
+@import "~primereact/resources/themes/bootstrap4-light-blue/theme.css";
+@import "~primereact/resources/primereact.min.css";
+@import "~primeicons/primeicons.css";
+
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    color: #1b1b1b;
+    background: #dee2e6;
+    font-family: 'Poppins' !important;    
+}

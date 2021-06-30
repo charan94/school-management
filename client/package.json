@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "version": "1.0",
+  "version": "0.1.0",
   "dependencies": {
     "@loadable/component": "^5.15.0",
     "@reduxjs/toolkit": "^1.5.1",

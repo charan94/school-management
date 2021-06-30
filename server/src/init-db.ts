@@ -21,13 +21,13 @@ export async function init(): Promise<Connection> {
         "dropSchema": process.env.IS_TESTING === 'true',
         "logging": process.env.IS_TESTING === 'true',
         "subscribers": [
-            "src/subscribers/**/*.ts"
+            "subscribers/**/*.ts"
         ],
         "entities": [
-            "src/entities/**/*.ts"
+            "entities/**/*.ts"
         ],
         "migrations": [
-            "src/migrations/**/*.ts"
+            "migrations/**/*.ts"
         ]
     });
     return connection;

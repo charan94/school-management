@@ -25,10 +25,10 @@ services:
   client:
     build:
       context: ./client
+      dockerfile: Dockerfile
     ports:
       - '3000:3000'
     environment:
-      REACT_APP_CURRENT_VERSION: '1'
       REACT_APP_API_URL: 'http://localhost:8080/api'
     volumes:
       - ./client/src:/app/src
@@ -44,3 +44,13 @@ services:
     restart: always
     ports:
       - '3306:3306'
+    entrypoint:
+      sh -c "
+        echo '
+        CREATE SCHEMA IF NOT EXISTS schooldb;
+        GRANT ALL PRIVILEGES ON schooldb.* TO '\''schooldb_user'\''@'\''%'\'' WITH GRANT OPTION;
+        FLUSH PRIVILEGES;
+        '
+        > /docker-entrypoint-initdb.d/init.sql;
+        /usr/local/bin/docker-entrypoint.sh --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      "

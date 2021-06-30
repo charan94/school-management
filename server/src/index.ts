@@ -6,10 +6,10 @@
 import * as express from 'express';
 import * as cors from 'cors';
 import * as helmet from 'helmet';
-import * as path from 'path';
 import routes from './routes';
 import { config } from 'dotenv';
 import { init } from './init-db';
+import { errorMiddleware } from './middlewares/error.middleware';
 
 config();
 
@@ -37,6 +37,8 @@ app.disable('x-powered-by');
 init();
 
 app.use('/', routes);
+
+app.use(errorMiddleware);
 
 const PORT = process.env.PORT || 8080;
 

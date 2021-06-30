@@ -13,6 +13,8 @@ import { errorMiddleware } from './middlewares/error.middleware';
 
 config();
 
+init();
+
 const app = express();
 
 const corsOptions = {
@@ -33,8 +35,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 
 app.disable('x-powered-by');
-
-init();
 
 app.use('/', routes);
 

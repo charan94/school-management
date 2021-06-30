@@ -3,7 +3,7 @@
  * @author K Sai Charan
 */
 
-import { Router } from "express";
+import { NextFunction, Request, Response, Router } from "express";
 import { injectable } from "inversify";
 
 @injectable()
@@ -22,6 +22,10 @@ export class AuthController {
     }
 
     initializeRoutes(): void {
+        this.router.post('/login', (request, response, next) => this.doLogin(request, response, next))
+    }
+
+    doLogin(request: Request, response: Response, next: NextFunction) {
 
     }
 

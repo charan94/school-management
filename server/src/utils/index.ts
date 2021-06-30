@@ -8,7 +8,8 @@ export enum Gender {
 
 export const ERROR_MESSAGES = {
     UNAUTHORIZED: 'User is not authorized to access this resource',
-    INVALID_TOKEN: 'Invalid Authentication token'
+    INVALID_TOKEN: 'Invalid Authentication token',
+    REQUIRED: (key: string) => `${key} is required`,
 }
 
 /**

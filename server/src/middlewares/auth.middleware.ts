@@ -39,7 +39,7 @@ export async function authGuard(
             if (!response.locals) {
                 response.locals = {};
             }
-            response.locals.userUuid = authenticatedPayload?.userUuid || '';
+            response.locals.userUUID = authenticatedPayload?.userUUID || '';
             response.locals.email = authenticatedPayload?.email || '';
             response.locals.roles = authenticatedPayload?.role || [];
             next();

@@ -26,7 +26,7 @@ export class User {
     @Column({ unique: true, type: 'nvarchar', length: 255 })
     password: string;
 
-    @Column({ default: false })
+    @Column({ default: false, name: 'is_active' })
     isActive: boolean;
 
     @ManyToMany(() => Role, (role) => role.user, {

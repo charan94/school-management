@@ -3,7 +3,7 @@
  * @author K Sai Charan
 */
 
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, Generated, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { BeforeInsert, BeforeUpdate, Column, CreateDateColumn, DeleteDateColumn, Entity, Generated, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Log } from "./Log";
 import { Role } from "./Role";
 import * as bcrypt from 'bcryptjs';
@@ -75,5 +75,16 @@ export class User {
    */
     async comparePassword(pass: string): Promise<boolean> {
         return bcrypt.compare(pass, this.password);
+    }
+
+    /**
+   * Encrypts plain password using bcrypt before saving
+   */
+    @BeforeInsert()
+    @BeforeUpdate()
+    async encryptPassword() {
+        if (this.password) {
+            this.password = await bcrypt.hash(this.password, 10);
+        }
     }
 }

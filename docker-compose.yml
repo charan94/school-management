@@ -14,7 +14,7 @@ services:
       JWT_TOKEN_EXPIRY: '3600'
       IS_PRODUCTION: 'false'
       FRONTEND_DOMAIN_NAME: 'http://localhost:3000'
-      IS_TESTING: 'false'
+      IS_TESTING: 'true'
       TYPEORM_DATABASE: 'schooldb'
       TYPEORM_USERNAME: 'schooldb_user'
       TYPEORM_PASSWORD: 'password'

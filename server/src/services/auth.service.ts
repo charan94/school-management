@@ -21,14 +21,16 @@ export class AuthService {
                 userName: loginProps.userName
             },
             relations: ['role']
-        })
-        if (user) {
-            const isPasswordMatched = await user.comparePassword(loginProps.password);
-            if (!isPasswordMatched) {
-                throw { message: ERROR_MESSAGES.LOGIN_FAILED };
-            }
-            result = { firstName: user.firstName, lastName: user.lastName, email: user.email, userUUID: user.userUUID, created: getMilliSeconds(user.created), updated: getMilliSeconds(user.updated) }
+        });
+
+        if (!user) {
+            throw { message: ERROR_MESSAGES.LOGIN_FAILED }
         }
+        const isPasswordMatched = await user.comparePassword(loginProps.password);
+        if (!isPasswordMatched) {
+            throw { message: ERROR_MESSAGES.LOGIN_FAILED };
+        }
+        result = { firstName: user.firstName, lastName: user.lastName, email: user.email, userUUID: user.userUUID, created: getMilliSeconds(user.created), updated: getMilliSeconds(user.updated) }
         return result;
     }
 

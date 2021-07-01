@@ -30,7 +30,7 @@ export class Student {
             Gender.OTHERS
         ]
     })
-    gender: string;
+    gender: Gender;
 
     @Column({ type: 'timestamp', name: 'date_of_birth' })
     dob: Date;

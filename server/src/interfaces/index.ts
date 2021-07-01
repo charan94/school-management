@@ -28,7 +28,7 @@ export interface IStudent {
     studentUUID?: string;
     firstName?: string;
     lastName?: string;
-    gender?: Gender;
+    gender?: Gender.MALE | Gender.FEMALE | Gender.OTHERS;
     dob?: Date | number;
     phone?: string;
     mobile?: string;

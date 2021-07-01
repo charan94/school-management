@@ -21,14 +21,19 @@ export async function init(): Promise<Connection> {
         "dropSchema": process.env.IS_TESTING === 'true',
         "logging": process.env.IS_TESTING === 'true',
         "subscribers": [
-            "subscribers/**/*.ts"
+            "src/subscribers/**/*.ts"
         ],
         "entities": [
-            "entities/**/*.ts"
+            "src/entities/**/*.ts"
         ],
         "migrations": [
-            "migrations/**/*.ts"
+            "src/migrations/**/*.ts"
         ]
     });
+
+    if (process.env.IS_TESTING === 'true') {
+        connection.runMigrations();
+    }
+
     return connection;
 }

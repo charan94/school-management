@@ -11,7 +11,8 @@ export const ERROR_MESSAGES = {
     UNAUTHORIZED: 'User is not authorized to access this resource',
     INVALID_TOKEN: 'Invalid Authentication token',
     REQUIRED: (key: string) => `${key} is required`,
-    LOGIN_FAILED: 'Unauthorized. Please check your username and password'
+    LOGIN_FAILED: 'Unauthorized. Please check your username and password',
+    INVALID: 'Error in hadling request. Please check the request and try again'
 }
 
 /**

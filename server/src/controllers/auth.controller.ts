@@ -37,7 +37,6 @@ export class AuthController {
         } catch (err) {
             return next({ status: 400, message: err });
         }
-
     }
 
     /**

@@ -58,3 +58,24 @@ export interface ILog {
     created?: Date | number;
     updated?: Date | number;
 }
+
+export interface IPaginationRequest<T> {
+    limit?: number;
+    skip?: number;
+    sort?: {
+        [P in keyof T]: 'ASC' | 'DESC';
+    };
+    filter?: IFilter[];
+}
+
+export interface PaginationResponse<T> {
+    totalRecords?: number;
+    records?: T[];
+    skip?: number;
+    limit?: number;
+}
+
+interface IFilter {
+    column: string;
+    value: any;
+}

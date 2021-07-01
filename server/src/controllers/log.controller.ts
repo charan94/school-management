@@ -1,5 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { injectable } from "inversify";
+import { authGuard } from "../middlewares/auth.middleware";
+import { routeValidator } from "../middlewares/route-validator.middleware";
 
 @injectable()
 export class LogController {
@@ -17,16 +19,19 @@ export class LogController {
     }
 
     initializeRoutes(): void {
-        this.router.get('/all', (request, response, next) => this.getAllLogs(request, response, next));
-        this.router.post('/one/:id', (request, response, next) => this.insertLog(request, response, next));
+        this.router.get(
+            '/all',
+            [authGuard],
+            [routeValidator],
+            (request, response, next) => this.getAllLogs(request, response, next));
     }
 
-    getAllLogs(request: Request, response: Response, next: NextFunction) {
+    async getAllLogs(request: Request, response: Response, next: NextFunction) {
+        try {
 
-    }
-
-    insertLog(request: Request, response: Response, next: NextFunction) {
-
+        } catch (err) {
+            next({ status: 400, message: err });
+        }
     }
 
     /**

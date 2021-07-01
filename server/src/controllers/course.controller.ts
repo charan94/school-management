@@ -1,5 +1,7 @@
 import { NextFunction, Router, Request, Response } from "express";
 import { injectable } from "inversify";
+import { authGuard } from "../middlewares/auth.middleware";
+import { routeValidator } from "../middlewares/route-validator.middleware";
 
 @injectable()
 export class CourseController {
@@ -17,9 +19,23 @@ export class CourseController {
     }
 
     initializeRoutes(): void {
-        this.router.get('/all', (request, response, next) => this.getAllCourses(request, response, next));
-        this.router.get('/one/:id', (request, response, next) => this.getCourseByID(request, response, next));
-        this.router.post('/one/:id', (request, response, next) => this.updateCourse(request, response, next));
+        this.router.get(
+            '/all',
+            [authGuard],
+            [routeValidator],
+            (request, response, next) => this.getAllCourses(request, response, next));
+
+        this.router.get(
+            '/one/:id',
+            [authGuard],
+            [routeValidator],
+            (request, response, next) => this.getCourseByID(request, response, next));
+            
+        this.router.post(
+            '/one/:id',
+            [authGuard],
+            [routeValidator],
+            (request, response, next) => this.updateCourse(request, response, next));
     }
 
     getAllCourses(request: Request, response: Response, next: NextFunction) {

@@ -36,7 +36,7 @@ app.use(helmet());
 
 app.disable('x-powered-by');
 
-app.use('/', routes);
+app.use('/api', routes);
 
 app.use(errorMiddleware);
 

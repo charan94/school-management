@@ -9,7 +9,8 @@ export interface IUser {
     firstName?: string
     lastName?: string
     isActive?: boolean;
-    role?: IRole;
+    role?: IRole[];
+    token?: string;
     created?: Date | number;
     updated?: Date | number;
 }
@@ -28,7 +29,7 @@ export interface IStudent {
     studentUUID?: string;
     firstName?: string;
     lastName?: string;
-    gender?: Gender.MALE | Gender.FEMALE | Gender.OTHERS;
+    gender?: Gender;
     dob?: Date | number;
     phone?: string;
     mobile?: string;
@@ -68,7 +69,7 @@ export interface IPaginationRequest<T> {
     filter?: IFilter[];
 }
 
-export interface PaginationResponse<T> {
+export interface IPaginationResponse<T> {
     totalRecords?: number;
     records?: T[];
     skip?: number;

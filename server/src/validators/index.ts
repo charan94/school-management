@@ -34,7 +34,7 @@ const paginationRequestSchema: Schema = {
 
 export const authValidator = {
     login: checkSchema({
-        username: {
+        userName: {
             in: ['body'],
             trim: true,
             escape: true,
@@ -58,7 +58,7 @@ export const paginationRequestValidator = checkSchema(paginationRequestSchema);
 export const studentValidator = {
     findByID: checkSchema({
         studentUUID: {
-            in: ['query'],
+            in: ['params'],
             notEmpty: true,
             trim: true
         }
@@ -154,7 +154,7 @@ export const studentValidator = {
 export const courseValidator = {
     findByID: checkSchema({
         courseUUID: {
-            in: ['query'],
+            in: ['params'],
             notEmpty: true,
             trim: true
         }

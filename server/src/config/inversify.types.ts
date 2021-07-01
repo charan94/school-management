@@ -11,5 +11,6 @@ export const TYPES = {
     CourseController: Symbol.for("CourseController"),
     CourseService: Symbol.for("CourseService"),
     LogController: Symbol.for("LogController"),
-    LogService: Symbol.for("LogService")
+    LogService: Symbol.for("LogService"),
+    PaginationService: Symbol.for("PaginationService")
 }

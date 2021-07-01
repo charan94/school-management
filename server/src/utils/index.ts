@@ -1,5 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import * as moment from 'moment';
+import { LOGGER } from '../config/logger';
 
 export enum Gender {
     MALE,
@@ -18,11 +19,11 @@ export const ERROR_MESSAGES = {
 /**
  * Verifies jwt token with options
  * @param token 
+ * @param secret
  * @param options 
  * @returns 
  */
-export function verifyAuthToken(token: string, options?: any) {
-    const secret = `${process.env.JWT_KEY}`;
+export function verifyAuthToken(token: string, secret: string, options?: any) {
     if (!options) {
         options = { ignoreExpiration: false }
     }
@@ -32,4 +33,17 @@ export function verifyAuthToken(token: string, options?: any) {
 
 export function getMilliSeconds(date: Date) {
     return moment(date).valueOf()
+}
+
+/**
+ * Verifies jwt token with options
+ * @param data 
+ * @returns signed token
+ */
+export function signJWT(data: any, secret: string, expiresIn: string | number): string {
+    LOGGER.info('secret ', secret);
+    LOGGER.info('expiresIn ', expiresIn);
+    const token = jwt.sign(data, secret, { expiresIn });
+    return token;
+
 }

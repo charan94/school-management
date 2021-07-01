@@ -11,7 +11,7 @@ services:
     environment:
       PROJECT_NAME: 'School Management'
       JWT_KEY: 'sec$Et10231819821^%&'
-      JWT_TOKEN_EXPIRY: '3600'
+      JWT_TOKEN_EXPIRY: '1h'
       IS_PRODUCTION: 'false'
       FRONTEND_DOMAIN_NAME: 'http://localhost:3000'
       IS_TESTING: 'true'

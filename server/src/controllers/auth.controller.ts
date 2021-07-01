@@ -8,7 +8,9 @@ import { matchedData } from "express-validator";
 import { inject, injectable } from "inversify";
 import { TYPES } from "../config/inversify.types";
 import { IUser } from "../interfaces";
+import { routeValidator } from "../middlewares/route-validator.middleware";
 import { AuthService } from "../services/auth.service";
+import { authValidator } from "../validators";
 
 @injectable()
 export class AuthController {
@@ -26,7 +28,11 @@ export class AuthController {
     }
 
     initializeRoutes(): void {
-        this.router.post('/login', (request, response, next) => this.doLogin(request, response, next))
+        this.router.post(
+            '/login',
+            authValidator.login,
+            [routeValidator],
+            (request, response, next) => this.doLogin(request, response, next))
     }
 
     async doLogin(request: Request, response: Response, next: NextFunction) {

@@ -18,9 +18,9 @@ const courseController: CourseController = container.get<CourseController>(TYPES
 const logController: LogController = container.get<LogController>(TYPES.LogController);
 
 router.use('/auth', authController.getRouter());
-router.use('/students', authController.getRouter());
-router.use('/courses', authController.getRouter());
-router.use('/logs', authController.getRouter());
+router.use('/students', studentController.getRouter());
+router.use('/courses', courseController.getRouter());
+router.use('/logs', logController.getRouter());
 
 
 export default router as Router;

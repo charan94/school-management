@@ -14,6 +14,7 @@ import { CourseController } from "../controllers/course.controller";
 import { CourseService } from "../services/course.service";
 import { LogController } from "../controllers/log.controller";
 import { LogService } from "../services/log.service";
+import { PaginationService } from "../services/pagination.service";
 
 /**
  * Instantiates a container where the symbols from types.ts are mapped to the respective classes.
@@ -30,3 +31,4 @@ container.bind<CourseController>(TYPES.CourseController).to(CourseController);
 container.bind<CourseService>(TYPES.CourseService).to(CourseService);
 container.bind<LogController>(TYPES.LogController).to(LogController);
 container.bind<LogService>(TYPES.LogService).to(LogService);
+container.bind<PaginationService<any>>(TYPES.PaginationService).to(PaginationService);

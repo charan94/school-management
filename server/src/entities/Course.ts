@@ -29,7 +29,7 @@ export class Course {
     created: Date;
 
     @ManyToMany(() => Student, (student) => student.course)
-    student: Student[];
+    student: Promise<Student[]>;
 
     @UpdateDateColumn({
         default: () => 'CURRENT_TIMESTAMP(6)',

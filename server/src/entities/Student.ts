@@ -35,10 +35,10 @@ export class Student {
     @Column({ type: 'timestamp', name: 'date_of_birth' })
     dob: Date;
 
-    @Column({ type: 'varchar', length: 10 })
+    @Column({ type: 'varchar', length: 15 })
     phone: string;
 
-    @Column({ type: 'varchar', length: 10 })
+    @Column({ type: 'varchar', length: 15 })
     mobile: string;
 
     @ManyToMany(() => Course, (course) => course.student, {
@@ -51,7 +51,7 @@ export class Student {
         joinColumn: { name: 'student_id', referencedColumnName: 'id' },
         inverseJoinColumn: { name: 'course_id', referencedColumnName: 'id' },
     })
-    course: Course[];
+    course: Promise<Course[]>;
 
     @CreateDateColumn({
         default: () => 'CURRENT_TIMESTAMP(6)',

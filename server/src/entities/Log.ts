@@ -43,7 +43,7 @@ export class Log {
     ip: string;
 
     @ManyToOne('User', 'log')
-    user: User;
+    user: Promise<User>;
 
     @CreateDateColumn({
         default: () => 'CURRENT_TIMESTAMP(6)',

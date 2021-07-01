@@ -6,6 +6,7 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, Generated, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Log } from "./Log";
 import { Role } from "./Role";
+import * as bcrypt from 'bcryptjs';
 
 @Entity()
 export class User {
@@ -16,6 +17,12 @@ export class User {
     @Column({ unique: true, type: 'varchar', length: 36, name: 'user_uuid' })
     @Generated('uuid')
     userUUID: string;
+
+    @Column({ unique: true, type: 'nvarchar', length: 255, name: 'first_name' })
+    firstName: string;
+
+    @Column({ unique: true, type: 'nvarchar', length: 255, name: 'last_name' })
+    lastName: string;
 
     @Column({ unique: true, type: 'nvarchar', length: 50, name: 'user_name' })
     userName: string;
@@ -42,7 +49,7 @@ export class User {
     role: Role[];
 
     @OneToMany('Log', 'user')
-    log: Log[];
+    log: Promise<Log[]>;
 
     @CreateDateColumn({
         default: () => 'CURRENT_TIMESTAMP(6)',
@@ -60,4 +67,13 @@ export class User {
         type: 'timestamp',
     })
     deleted: Date;
+
+    /**
+   * Compares password
+   * @param pass
+   * @returns true on success
+   */
+    async comparePassword(pass: string): Promise<boolean> {
+        return bcrypt.compare(pass, this.password);
+    }
 }

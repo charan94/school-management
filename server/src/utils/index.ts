@@ -1,4 +1,5 @@
 import * as jwt from 'jsonwebtoken';
+import * as moment from 'moment';
 
 export enum Gender {
     MALE,
@@ -10,6 +11,7 @@ export const ERROR_MESSAGES = {
     UNAUTHORIZED: 'User is not authorized to access this resource',
     INVALID_TOKEN: 'Invalid Authentication token',
     REQUIRED: (key: string) => `${key} is required`,
+    LOGIN_FAILED: 'Unauthorized. Please check your username and password'
 }
 
 /**
@@ -25,4 +27,8 @@ export function verifyAuthToken(token: string, options?: any) {
     }
     const isTokenValid = jwt.verify(token, secret, options);
     return isTokenValid;
+}
+
+export function getMilliSeconds(date: Date) {
+    return moment(date).valueOf()
 }

@@ -27,7 +27,7 @@ export class Role {
 
     @Column({ unique: true, type: 'nvarchar', length: 36 })
     @Generated('uuid')
-    roleUuid: string;
+    roleUUID: string;
 
     @Column({ nullable: false, unique: true, type: 'nvarchar', length: 255 })
     name: string;

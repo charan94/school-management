@@ -12,7 +12,7 @@ export const ERROR_MESSAGES = {
     INVALID_TOKEN: 'Invalid Authentication token',
     REQUIRED: (key: string) => `${key} is required`,
     LOGIN_FAILED: 'Unauthorized. Please check your username and password',
-    INVALID: 'Error in hadling request. Please check the request and try again'
+    INVALID: 'Invalid Request'
 }
 
 /**

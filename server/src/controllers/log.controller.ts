@@ -2,6 +2,7 @@ import { Router, Request, Response, NextFunction } from "express";
 import { injectable } from "inversify";
 import { authGuard } from "../middlewares/auth.middleware";
 import { routeValidator } from "../middlewares/route-validator.middleware";
+import { paginationRequestValidator } from "../validators";
 
 @injectable()
 export class LogController {
@@ -22,6 +23,7 @@ export class LogController {
         this.router.get(
             '/all',
             [authGuard],
+            paginationRequestValidator,
             [routeValidator],
             (request, response, next) => this.getAllLogs(request, response, next));
     }

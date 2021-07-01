@@ -2,6 +2,7 @@ import { NextFunction, Router, Request, Response } from "express";
 import { injectable } from "inversify";
 import { authGuard } from "../middlewares/auth.middleware";
 import { routeValidator } from "../middlewares/route-validator.middleware";
+import { courseValidator, paginationRequestValidator } from "../validators";
 
 @injectable()
 export class CourseController {
@@ -22,31 +23,34 @@ export class CourseController {
         this.router.get(
             '/all',
             [authGuard],
+            paginationRequestValidator,
             [routeValidator],
             (request, response, next) => this.getAllCourses(request, response, next));
 
         this.router.get(
             '/one/:id',
             [authGuard],
+            courseValidator.findByID,
             [routeValidator],
             (request, response, next) => this.getCourseByID(request, response, next));
-            
+
         this.router.post(
             '/one/:id',
             [authGuard],
+            courseValidator.updateCourse,
             [routeValidator],
             (request, response, next) => this.updateCourse(request, response, next));
     }
 
-    getAllCourses(request: Request, response: Response, next: NextFunction) {
+    async getAllCourses(request: Request, response: Response, next: NextFunction) {
 
     }
 
-    getCourseByID(request: Request, response: Response, next: NextFunction) {
+    async getCourseByID(request: Request, response: Response, next: NextFunction) {
 
     }
 
-    updateCourse(request: Request, response: Response, next: NextFunction) {
+    async updateCourse(request: Request, response: Response, next: NextFunction) {
 
     }
 

@@ -53,19 +53,147 @@ export const authValidator = {
     })
 }
 
-const paginationValidator = {
-    findAll: checkSchema(paginationRequestSchema)
+export const paginationRequestValidator = checkSchema(paginationRequestSchema);
+
+export const studentValidator = {
+    findByID: checkSchema({
+        studentUUID: {
+            in: ['query'],
+            notEmpty: true,
+            trim: true
+        }
+    }),
+    updateStudent: checkSchema({
+        studentUUID: {
+            in: ['query'],
+            notEmpty: true,
+            trim: true
+        },
+        firstName: {
+            in: ['body'],
+            escape: true,
+            trim: true,
+            isString: {
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            isLength: {
+                options: {
+                    max: 255
+                },
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            optional: true
+        },
+        lastName: {
+            in: ['body'],
+            escape: true,
+            trim: true,
+            isString: {
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            isLength: {
+                options: {
+                    max: 255
+                },
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            optional: true
+        },
+        gender: {
+            in: ['body'],
+            escape: true,
+            trim: true,
+            isInt: {
+                options: { lt: 3 },
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            optional: true
+        },
+        dob: {
+            in: ['body'],
+            escape: true,
+            trim: true,
+            isDate: {
+                options: { format: 'yyyy-mm-dd' },
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            optional: true
+        },
+        phone: {
+            in: ['body'],
+            escape: true,
+            trim: true,
+            isString: {
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            optional: true
+        },
+        mobile: {
+            in: ['body'],
+            escape: true,
+            trim: true,
+            isString: {
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            optional: true
+        },
+        course: {
+            in: ['body'],
+            trim: true,
+            isArray: {
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            notEmpty: {
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            optional: true
+        }
+    })
 }
 
-const studentValidator = {
-
-
-}
-
-const courseValidator = {
-
-}
-
-const logValidator = {
-
+export const courseValidator = {
+    findByID: checkSchema({
+        courseUUID: {
+            in: ['query'],
+            notEmpty: true,
+            trim: true
+        }
+    }),
+    updateCourse: checkSchema({
+        courseUUID: {
+            in: ['query'],
+            notEmpty: true,
+            trim: true
+        },
+        name: {
+            in: ['body'],
+            escape: true,
+            trim: true,
+            isString: {
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            isLength: {
+                options: {
+                    max: 255
+                },
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            optional: true
+        },
+        description: {
+            in: ['body'],
+            escape: true,
+            trim: true,
+            isString: {
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            isLength: {
+                options: {
+                    max: 255
+                },
+                errorMessage: ERROR_MESSAGES.INVALID
+            },
+            optional: true
+        }
+    })
 }

@@ -3,12 +3,14 @@ import { matchedData } from "express-validator";
 import { inject, injectable } from "inversify";
 import { getRepository, Repository } from "typeorm";
 import { TYPES } from "../config/inversify.types";
+import { LOGGER } from "../config/logger";
 import { Student } from "../entities/Student";
 import { IPaginationRequest, IPaginationResponse, IStudent } from "../interfaces";
 import { authGuard } from "../middlewares/auth.middleware";
 import { routeValidator } from "../middlewares/route-validator.middleware";
 import { PaginationService } from "../services/pagination.service";
 import { StudentService } from "../services/student.service";
+import { getMilliSeconds } from "../utils";
 import { paginationRequestValidator, studentValidator } from "../validators";
 
 @injectable()
@@ -63,7 +65,8 @@ export class StudentController {
     async getStudentByID(request: Request, response: Response, next: NextFunction) {
         try {
             const body: any = matchedData(request, { locations: ['params'] });
-            const result: IStudent = await this.service.findStudent(body?.id || '');
+            const { student, courses } = await this.service.findStudent(body?.id || '');
+            const result = this.service.sanitizeRecords(student, courses);
             return response.status(200).send({ status: 200, data: result });
         } catch (err) {
             next(err);
@@ -74,9 +77,11 @@ export class StudentController {
         try {
             const id: string = matchedData(request, { locations: ['params'] })?.id;
             const body: Student = (matchedData(request, { locations: ['body'] }) as Student);
-            const student: IStudent = await this.service.updateStudent(id, body);
-            return response.status(200).send({ status: 200, data: student });
+            const { student, courses } = await this.service.updateStudent(id, body);
+            const result = this.service.sanitizeRecords(student, courses);
+            return response.status(200).send({ status: 200, data: result });
         } catch (err) {
+            LOGGER.info('err ', err);
             next(err);
         }
     }

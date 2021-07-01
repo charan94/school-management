@@ -66,7 +66,8 @@ export class CourseController {
     async getCourseByID(request: Request, response: Response, next: NextFunction) {
         try {
             const body: any = matchedData(request, { locations: ['params'] });
-            const result: ICourse = await this.service.findCourse(body?.id || '');
+            const course = await this.service.findCourse(body?.id || '');
+            const result = this.service.sanitizeCourseProps(course);
             return response.status(200).send({ status: 200, data: result });
         } catch (err) {
             next(err);
@@ -77,8 +78,9 @@ export class CourseController {
         try {
             const id: string = matchedData(request, { locations: ['params'] })?.id;
             const body: Course = (matchedData(request, { locations: ['body'] }) as Course);
-            const course: ICourse = await this.service.updateCourse(id, body);
-            return response.status(200).send({ status: 200, data: course });
+            const course = await this.service.updateCourse(id, body);
+            const result: ICourse = await this.service.sanitizeCourseProps(course);
+            return response.status(200).send({ status: 200, data: result });
         } catch (err) {
             next(err);
         }

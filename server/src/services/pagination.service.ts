@@ -10,14 +10,14 @@ export class PaginationService<T> {
 
     async findRecords(paginationProps: IPaginationRequest<T>, repository: Repository<T>, fields?: Array<string>) {
 
-        const limit = paginationProps.limit || 0;
+        const limit = paginationProps.limit || 10;
         const skip = paginationProps.skip || 0;
         const filter = paginationProps.filter || [];
         const order = paginationProps.sort || {};
 
         const result: IPaginationResponse<T> = {
-            limit: limit,
-            skip: skip
+            limit,
+            skip
         };
 
         let query = {};
@@ -26,8 +26,8 @@ export class PaginationService<T> {
         }
 
         const data: [T[], number] = await repository.findAndCount({
-            skip: paginationProps.skip,
-            take: paginationProps.limit,
+            skip: skip,
+            take: limit,
             order: order,
             where: query
         });

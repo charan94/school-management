@@ -23,10 +23,12 @@ export class AuthService {
             relations: ['role'],
         });
 
-        user.role = user.role.map(role => {
+        user.role = user.role.map((role: any) => {
             delete role.id;
             delete role.deleted;
             delete role.description;
+            role.created = getMilliSeconds(role.created);
+            role.updated = getMilliSeconds(role.updated);
             return role;
         });
 

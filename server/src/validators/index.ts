@@ -57,15 +57,15 @@ export const paginationRequestValidator = checkSchema(paginationRequestSchema);
 
 export const studentValidator = {
     findByID: checkSchema({
-        studentUUID: {
+        id: {
             in: ['params'],
             notEmpty: true,
             trim: true
         }
     }),
     updateStudent: checkSchema({
-        studentUUID: {
-            in: ['query'],
+        id: {
+            in: ['params'],
             notEmpty: true,
             trim: true
         },
@@ -139,11 +139,7 @@ export const studentValidator = {
         },
         course: {
             in: ['body'],
-            trim: true,
             isArray: {
-                errorMessage: ERROR_MESSAGES.INVALID
-            },
-            notEmpty: {
                 errorMessage: ERROR_MESSAGES.INVALID
             },
             optional: true
@@ -153,15 +149,15 @@ export const studentValidator = {
 
 export const courseValidator = {
     findByID: checkSchema({
-        courseUUID: {
+        id: {
             in: ['params'],
             notEmpty: true,
             trim: true
         }
     }),
     updateCourse: checkSchema({
-        courseUUID: {
-            in: ['query'],
+        id: {
+            in: ['params'],
             notEmpty: true,
             trim: true
         },

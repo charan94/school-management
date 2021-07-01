@@ -10,6 +10,7 @@ import { Student } from "../entities/Student";
 import { User } from "../entities/User";
 import * as faker from 'faker';
 import { Gender } from "../utils";
+import { LOGGER } from "../config/logger";
 
 export class DataLoader1625080180402 implements MigrationInterface {
 
@@ -39,6 +40,7 @@ export class DataLoader1625080180402 implements MigrationInterface {
             let student = await studentRepo.save(createdStudent);
             student.course = Promise.resolve([courses[i]]);
             student = await studentRepo.save(student);
+            LOGGER.info('student ', student);
             students.push(student);
         }
     }

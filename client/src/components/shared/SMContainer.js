@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { getAuthState } from '../../reducer/auth.reducer';
 
 const SMContainer = (props) => {
@@ -12,8 +12,7 @@ const SMContainer = (props) => {
             if (authState.isAuthenticated) {
                 return <Component {...props} routes={routes} />;
             }
-            window.location.href = `${process.env.REACT_APP_LOGIN_URL}#session-timeout`;
-            return null;
+            return <Redirect to={{ pathname: '/login' }} />
         }} />);
     }
 

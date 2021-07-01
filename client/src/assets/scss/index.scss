@@ -13,3 +13,10 @@ body {
     background: #dee2e6;
     font-family: 'Poppins' !important;    
 }
+
+.login-card {
+    min-height: 50vh;
+    .login-logo-img {
+        max-height: 10em;
+    }
+}

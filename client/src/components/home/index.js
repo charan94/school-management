@@ -1,3 +1,8 @@
+/**
+ * @file index.js
+ * @author K Sai Charan
+*/
+
 import React, { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import { useDispatch, useSelector } from 'react-redux';

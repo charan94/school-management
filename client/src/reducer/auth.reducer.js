@@ -1,3 +1,8 @@
+/**
+ * @file auth.reducer.js
+ * @author K Sai Charan
+*/
+
 import {
     createEntityAdapter,
     createSelector,

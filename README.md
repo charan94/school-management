@@ -15,5 +15,9 @@ docker-compose up -d
 ts-node ./node_modules/typeorm/cli.js migration:run
 ```
 
+### PROD or UAT Configurations
+Populate scripts in build/run-prod.sh by populating appropriate secrets
+
 ## License
 MIT
+

@@ -1,3 +1,8 @@
+/**
+ * @file SMLoader.js
+ * @author K Sai Charan
+*/
+
 import React from 'react';
 import Spinner from 'react-bootstrap/Spinner';
 

@@ -1,3 +1,8 @@
+/**
+ * @file StudentsList.js
+ * @author K Sai Charan
+*/
+
 import React from 'react';
 import StudentsTable from './StudentsTable';
 import Col from 'react-bootstrap/Col';

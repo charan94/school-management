@@ -1,3 +1,8 @@
+/**
+ * @file LoginForm.js
+ * @author K Sai Charan
+*/
+
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Col from 'react-bootstrap/Col';
@@ -10,6 +15,7 @@ const LoginForm = (props) => {
 
     const { doLogin, authState } = props;
 
+    /// Used to validate forms
     const formik = useFormik({
         initialValues: {
             userName: '',

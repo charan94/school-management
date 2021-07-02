@@ -1,3 +1,8 @@
+/**
+ * @file StudentsTable.js
+ * @author K Sai Charan
+*/
+
 import React, { useState } from 'react';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';

@@ -1,3 +1,8 @@
+/**
+ * @file App.js
+ * @author K Sai Charan
+*/
+
 import React from 'react';
 import './assets/scss/App.scss';
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";

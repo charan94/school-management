@@ -1,3 +1,8 @@
+/**
+ * @file api.js
+ * @author K Sai Charan
+*/
+
 const BASE_API_URL = `${process.env.REACT_APP_API_URL}`;
 
 export const apiCall = async (

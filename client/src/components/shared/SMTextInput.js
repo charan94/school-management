@@ -1,3 +1,8 @@
+/**
+ * @file SMTextInput.js
+ * @author K Sai Charan
+*/
+
 import React from 'react';
 
 const SMTextInput = (props) => {

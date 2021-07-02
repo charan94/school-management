@@ -1,3 +1,8 @@
+/**
+ * @file index.js
+ * @author K Sai Charan
+*/
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/scss/index.scss';

@@ -1,3 +1,8 @@
+/**
+ * @file index.js
+ * @author K Sai Charan
+*/
+
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import { authReducer, AUTH_FEATURE_KEY, AUTH_INITIAL_STATE_LOGIN } from "../reducer/auth.reducer";
 import { homeReducer, HOME_FEATURE_KEY, HOME_INITIAL_STATE } from "../reducer/home.reducer";

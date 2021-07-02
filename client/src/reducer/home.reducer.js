@@ -1,3 +1,8 @@
+/**
+ * @file home.reducer.js
+ * @author K Sai Charan
+*/
+
 import {
     createEntityAdapter,
     createSelector,

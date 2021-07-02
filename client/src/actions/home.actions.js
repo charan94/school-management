@@ -1,3 +1,8 @@
+/**
+ * @file home.actions.js
+ * @author K Sai Charan
+*/
+
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { loadCoursesAPI, loadStudentByIdAPI, loadStudentsAPI, updateStudentAPI } from "../services/home.api";
 

@@ -1,3 +1,8 @@
+/**
+ * @file AddCourseModal.js
+ * @author K Sai Charan
+*/
+
 import React, { useState } from 'react';
 import { Dialog } from 'primereact/dialog';
 import Col from 'react-bootstrap/Col';

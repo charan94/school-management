@@ -1,3 +1,8 @@
+/**
+ * @file auth.actions.js
+ * @author K Sai Charan
+*/
+
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { loginAPI } from "../services/auth.api";
 

@@ -1,3 +1,8 @@
+/**
+ * @file SMColumn.js
+ * @author K Sai Charan
+*/
+
 import React from 'react';
 
 const SMColumn = (props) => {

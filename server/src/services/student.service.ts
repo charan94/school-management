@@ -1,9 +1,13 @@
+/**
+ * @file student.service.ts
+ * @author K Sai Charan
+*/
+
 import { inject, injectable } from "inversify";
 import { getRepository, Repository } from "typeorm";
 import { TYPES } from "../config/inversify.types";
-import { LOGGER } from "../config/logger";
 import { Student } from "../entities/Student";
-import { ICourse, IStudent } from "../interfaces";
+import { IStudent } from "../interfaces";
 import { ERROR_MESSAGES, getMilliSeconds } from "../utils";
 import { CourseService } from "./course.service";
 
@@ -11,6 +15,11 @@ import { CourseService } from "./course.service";
 export class StudentService {
     constructor(@inject(TYPES.CourseService) private courseService: CourseService) { }
 
+    /**
+     * Find student based on UUID
+     * @param studentUUID 
+     * @returns student object
+     */
     async findStudent(studentUUID: string) {
         const studentRepo: Repository<Student> = getRepository(Student);
         const student = await studentRepo.findOne({
@@ -25,6 +34,12 @@ export class StudentService {
         return { student, courses };
     }
 
+    /**
+     * Updates student based on UUID
+     * @param studentUUID 
+     * @param body 
+     * @returns Updated student object
+     */
     async updateStudent(studentUUID: string, body: Student) {
         const studentRepo: Repository<Student> = getRepository(Student);
         let newCourses: any = null;
@@ -47,6 +62,12 @@ export class StudentService {
         return { student, courses };
     }
 
+    /**
+     * Removes/Updates unwanted/secure keys in the student object
+     * @param studentProps 
+     * @param courses 
+     * @returns sanitized student object
+     */
     sanitizeRecords(studentProps: any, courses: Array<any>): IStudent {
         const result: IStudent = {
             id: studentProps.id,

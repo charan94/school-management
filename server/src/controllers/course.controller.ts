@@ -1,3 +1,8 @@
+/**
+ * @file course.controller.ts
+ * @author K Sai Charan
+*/
+
 import { NextFunction, Router, Request, Response } from "express";
 import { matchedData } from "express-validator";
 import { inject, injectable } from "inversify";
@@ -19,9 +24,7 @@ export class CourseController {
      */
     private router = Router();
 
-    /**
-     * Initialize routes on contructor
-     */
+
     constructor(
         @inject(TYPES.CourseService) private service: CourseService,
         @inject(TYPES.PaginationService) private paginationService: PaginationService<Course>
@@ -29,6 +32,9 @@ export class CourseController {
         this.initializeRoutes();
     }
 
+    /**
+     * Initialize routes on course controller
+     */
     initializeRoutes(): void {
         this.router.get(
             '/all',
@@ -52,6 +58,13 @@ export class CourseController {
             (request, response, next) => this.updateCourse(request, response, next));
     }
 
+    /**
+     * 
+     * @param request 
+     * @param response 
+     * @param next 
+     * @returns PaginatedResponse
+     */
     async getAllCourses(request: Request, response: Response, next: NextFunction) {
         try {
             const body: IPaginationRequest<Course> = matchedData(request, { locations: ['query'] });
@@ -63,6 +76,13 @@ export class CourseController {
         }
     }
 
+    /**
+     * 
+     * @param request 
+     * @param response 
+     * @param next 
+     * @returns CourseDetails
+     */
     async getCourseByID(request: Request, response: Response, next: NextFunction) {
         try {
             const body: any = matchedData(request, { locations: ['params'] });
@@ -74,6 +94,13 @@ export class CourseController {
         }
     }
 
+    /**
+     * 
+     * @param request 
+     * @param response 
+     * @param next 
+     * @returns Updates existing course
+     */
     async updateCourse(request: Request, response: Response, next: NextFunction) {
         try {
             const id: string = matchedData(request, { locations: ['params'] })?.id;

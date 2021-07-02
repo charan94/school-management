@@ -1,3 +1,8 @@
+/**
+ * @file index.ts
+ * @author K Sai Charan
+*/
+
 import { Gender } from "../utils";
 
 export interface IUser {

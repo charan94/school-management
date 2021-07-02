@@ -1,3 +1,8 @@
+/**
+ * @file index.ts
+ * @author K Sai Charan
+*/
+
 import * as jwt from 'jsonwebtoken';
 import * as moment from 'moment';
 import { LOGGER } from '../config/logger';
@@ -31,6 +36,11 @@ export function verifyAuthToken(token: string, secret: string, options?: any) {
     return isTokenValid;
 }
 
+/**
+ * Converts date to ms
+ * @param date 
+ * @returns ms
+ */
 export function getMilliSeconds(date: Date) {
     return moment(date).valueOf()
 }

@@ -27,6 +27,9 @@ export class AuthController {
         this.initializeRoutes();
     }
 
+    /**
+     * Initializes routes for auth controller
+     */
     initializeRoutes(): void {
         this.router.post(
             '/login',
@@ -35,6 +38,13 @@ export class AuthController {
             (request, response, next) => this.doLogin(request, response, next))
     }
 
+    /**
+     * 
+     * @param request 
+     * @param response 
+     * @param next 
+     * @returns AuthResponse
+     */
     async doLogin(request: Request, response: Response, next: NextFunction) {
         try {
             const body: IUser = matchedData(request, { locations: ['body'] });

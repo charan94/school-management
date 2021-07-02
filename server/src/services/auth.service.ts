@@ -1,3 +1,8 @@
+/**
+ * @file auth.service.ts
+ * @author K Sai Charan
+*/
+
 import { injectable } from "inversify";
 import { getRepository, Repository } from "typeorm";
 import { User } from "../entities/User";

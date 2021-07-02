@@ -1,6 +1,10 @@
+/**
+ * @file pagination.service.ts
+ * @author K Sai Charan
+*/
+
 import { injectable } from "inversify";
 import { Like, Repository } from "typeorm";
-import { LOGGER } from "../config/logger";
 import { IPaginationRequest, IPaginationResponse } from "../interfaces";
 import { getMilliSeconds } from "../utils";
 
@@ -9,6 +13,13 @@ export class PaginationService<T> {
 
     constructor() { }
 
+    /**
+     * Finds records based on repository and pagination properties
+     * @param paginationProps 
+     * @param repository 
+     * @param fields 
+     * @returns Paginated Response
+     */
     async findRecords(paginationProps: IPaginationRequest<T>, repository: Repository<T>, fields?: Array<string>) {
 
         const limit = parseInt(`${paginationProps.limit}`) || 10;

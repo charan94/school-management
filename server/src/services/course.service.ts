@@ -1,3 +1,8 @@
+/**
+ * @file course.service.ts
+ * @author K Sai Charan
+*/
+
 import { injectable } from "inversify";
 import { getRepository, In, Repository } from "typeorm";
 import { Course } from "../entities/Course";
@@ -8,6 +13,11 @@ import { ERROR_MESSAGES, getMilliSeconds } from "../utils";
 export class CourseService {
     constructor() { }
 
+    /**
+     * Find all the courses based on UUID
+     * @param courseIds 
+     * @returns course array
+     */
     async findMany(courseIds: Array<string>) {
         const courseRepo: Repository<Course> = getRepository(Course);
         const courses = await courseRepo.find({
@@ -18,6 +28,11 @@ export class CourseService {
         return courses;
     }
 
+    /**
+     * find course based on UUID
+     * @param courseUUID 
+     * @returns course object
+     */
     async findCourse(courseUUID: string) {
         const courseRepo: Repository<Course> = getRepository(Course);
         const course = await courseRepo.findOne({
@@ -31,6 +46,12 @@ export class CourseService {
         return course;
     }
 
+    /**
+     * Updates exising course based on UUID
+     * @param courseUUID 
+     * @param body 
+     * @returns Updated course object
+     */
     async updateCourse(courseUUID: string, body: Course) {
         const courseRepo: Repository<Course> = getRepository(Course);
         const updated = await courseRepo.update({ courseUUID }, body);
@@ -40,6 +61,11 @@ export class CourseService {
         return this.findCourse(courseUUID);
     }
 
+    /**
+     * Removed unwanted/secure keys from course object and converts dates to ms
+     * @param course 
+     * @returns Sanitized course object
+     */
     sanitizeCourseProps(course: any): ICourse {
         const result: ICourse = {
             courseUUID: course.courseUUID,

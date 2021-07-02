@@ -1,3 +1,8 @@
+/**
+ * @file index.ts
+ * @author K Sai Charan
+*/
+
 import { Router } from "express";
 import { container } from "../config/inversify.config";
 import { TYPES } from "../config/inversify.types";

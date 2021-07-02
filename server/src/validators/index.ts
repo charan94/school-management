@@ -1,3 +1,8 @@
+/**
+ * @file index.ts
+ * @author K Sai Charan
+*/
+
 import { checkSchema, Schema } from "express-validator";
 import { ERROR_MESSAGES } from "../utils";
 

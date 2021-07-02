@@ -17,6 +17,10 @@ const colors = {
     info: 'cyan',
 };
 
+/**
+ * Used for logging to the console
+ * @note We can also use Mail transport to send email when there is an error
+ */
 export const LOGGER = winston.createLogger({
     levels,
     format: winston.format.json(),

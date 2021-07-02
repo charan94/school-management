@@ -1,5 +1,6 @@
 import { injectable } from "inversify";
 import { Like, Repository } from "typeorm";
+import { LOGGER } from "../config/logger";
 import { IPaginationRequest, IPaginationResponse } from "../interfaces";
 import { getMilliSeconds } from "../utils";
 
@@ -10,10 +11,10 @@ export class PaginationService<T> {
 
     async findRecords(paginationProps: IPaginationRequest<T>, repository: Repository<T>, fields?: Array<string>) {
 
-        const limit = paginationProps.limit || 10;
-        const skip = paginationProps.skip || 0;
-        const filter = paginationProps.filter || [];
-        const order = paginationProps.sort || {};
+        const limit = parseInt(`${paginationProps.limit}`) || 10;
+        const skip = parseInt(`${paginationProps.skip}`) || 0;
+        const filter = paginationProps?.filter ? JSON.parse(`${paginationProps?.filter}`) : [];
+        const order = paginationProps?.sort ? JSON.parse(`${paginationProps?.sort}`) : {};
 
         const result: IPaginationResponse<T> = {
             limit,
@@ -22,7 +23,7 @@ export class PaginationService<T> {
 
         let query = {};
         for (let i = 0; i < filter.length; i++) {
-            query[filter[i].column] = Like(filter[i].value);
+            query[filter[i].column] = Like(`%${filter[i].value}%`);
         }
 
         const data: [T[], number] = await repository.findAndCount({

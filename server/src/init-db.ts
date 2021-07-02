@@ -17,8 +17,8 @@ export async function init(): Promise<Connection> {
         host: process.env.TYPEORM_HOST,
         port: parseInt(process.env.TYPEORM_PORT),
         "type": "mysql",
-        "synchronize": false, //process.env.IS_TESTING === 'true',
-        "dropSchema": false, //process.env.IS_TESTING === 'true',
+        "synchronize": true, //process.env.IS_TESTING === 'true',
+        "dropSchema": true, //process.env.IS_TESTING === 'true',
         "logging": process.env.IS_TESTING === 'true',
         "subscribers": [
             "src/subscribers/**/*.ts"

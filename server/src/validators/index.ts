@@ -18,7 +18,7 @@ const paginationRequestSchema: Schema = {
         in: ['query'],
         optional: true,
         trim: true,
-        isObject: {
+        isJSON: {
             errorMessage: ERROR_MESSAGES.INVALID
         }
     },
@@ -26,7 +26,7 @@ const paginationRequestSchema: Schema = {
         in: ['query'],
         optional: true,
         trim: true,
-        isArray: {
+        isJSON: {
             errorMessage: ERROR_MESSAGES.INVALID
         }
     }

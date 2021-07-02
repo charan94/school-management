@@ -28,7 +28,7 @@ const Auth = (props) => {
         <Container fluid>
             <Row className="mt-0 mt-lg-5">
                 <Col xs={10} md={{ offset: 4, span: 3 }}>
-                    <Card className="p-5 login-card">
+                    <Card className="p-5 login-card shadow-lg">
                         <LoginForm doLogin={doLogin} authState={authState} />
                     </Card>
                 </Col>

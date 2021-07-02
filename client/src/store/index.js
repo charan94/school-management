@@ -4,7 +4,6 @@ import { homeReducer, HOME_FEATURE_KEY, HOME_INITIAL_STATE } from "../reducer/ho
 
 const getStateFromStorage = () => {
     const savedState = localStorage.getItem('state');
-    console.log('savedState ', savedState);
     if (savedState) {
         return JSON.parse(savedState)
     }

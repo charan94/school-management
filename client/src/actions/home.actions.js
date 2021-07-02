@@ -37,7 +37,7 @@ export const updateStudentAction = createAsyncThunk(
     'home/course/get/id',
     async (props) => {
         const { data, id } = props;
-        const response = await updateStudentAPI(data, id);
+        const response = await updateStudentAPI({ course: data }, id);
         return response;
     }
 );

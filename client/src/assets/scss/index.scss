@@ -1,8 +1,10 @@
-@import "~bootstrap/dist/css/bootstrap.min.css";
-@import "../css/fontawesome/css/all.min.css";
 @import "~primereact/resources/themes/bootstrap4-light-blue/theme.css";
 @import "~primereact/resources/primereact.min.css";
+@import '~primeflex/primeflex.css';
 @import "~primeicons/primeicons.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+@import "../css/fontawesome/css/all.min.css";
+
 
 
 body {
@@ -18,4 +20,9 @@ body {
     .login-logo-img {
         max-height: 10em;
     }
+}
+
+
+.p-autocomplete-panel {
+    display: block !important;
 }

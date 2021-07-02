@@ -3,7 +3,7 @@ import {
     createSelector,
     createSlice,
 } from "@reduxjs/toolkit";
-import { loadStudentsAction } from "../actions/home.actions";
+import { loadCoursesAction, loadStudentsAction, loadStudentsByIdAction } from "../actions/home.actions";
 
 export const HOME_INITIAL_STATE = {
     students: [],
@@ -11,7 +11,8 @@ export const HOME_INITIAL_STATE = {
     studentsDataLoading: false,
     courseDataLoading: false,
     studentsDataFetchError: null,
-    coursesDataFetchError: null
+    coursesDataFetchError: null,
+    expandedStudent: null
 };
 
 export const HOME_FEATURE_KEY = "home";
@@ -42,6 +43,39 @@ export const homeSlice = createSlice({
             .addCase(loadStudentsAction.rejected, (state, action) => {
                 state.studentsDataLoading = false;
                 state.studentsDataFetchError = action?.error?.message;
+            })
+            .addCase(loadStudentsByIdAction.pending, (state) => {
+                state.expandedStudent = null;
+            })
+            .addCase(loadStudentsByIdAction.fulfilled, (state, action) => {
+                const response = action.payload;
+                if (response?.status === 200) {
+                    state.expandedStudent = response?.data;
+                } else {
+                    state.expandedStudent = null;
+                }
+            })
+            .addCase(loadStudentsByIdAction.rejected, (state) => {
+                state.expandedStudent = null;
+            })
+
+            //
+            .addCase(loadCoursesAction.pending, (state) => {
+                state.courses = [];
+                state.courseDataLoading = true;
+            })
+            .addCase(loadCoursesAction.fulfilled, (state, action) => {
+                const response = action.payload;
+                state.courseDataLoading = false;
+                if (response.status === 200) {
+                    state.courses = response.data;
+                } else {
+                    state.coursesDataFetchError = response?.error;
+                }
+            })
+            .addCase(loadCoursesAction.rejected, (state, action) => {
+                state.courseDataLoading = false;
+                state.coursesDataFetchError = action?.error?.message;
             })
     }
 });

@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import LoginForm from './LoginForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAuthState } from '../../reducer/auth.reducer';
+import { authActions, getAuthState } from '../../reducer/auth.reducer';
 import { loginAction } from '../../actions/auth.actions';
 
 const Auth = (props) => {
@@ -13,10 +13,15 @@ const Auth = (props) => {
     const authState = useSelector(getAuthState);
     const dispatch = useDispatch();
     const { history } = props;
+    const { initializeAuthState } = authActions;
 
     const doLogin = (data) => {
         dispatch(loginAction(data));
     }
+
+    useEffect(() => {
+        dispatch(initializeAuthState());
+    }, []);
 
     useEffect(() => {
         if (authState.isAuthenticated) {

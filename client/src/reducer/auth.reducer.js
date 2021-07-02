@@ -22,7 +22,14 @@ export const initialAuthState = authAdapter.getInitialState(
 export const authSlice = createSlice({
     name: AUTH_FEATURE_KEY,
     initialState: AUTH_INITIAL_STATE_LOGIN,
-    reducers: {},
+    reducers: {
+        initializeAuthState: function (state) {
+            state.isAuthenticated = false;
+            state.user = null;
+            state.accessToken = null;
+            localStorage.clear();
+        }
+    },
     extraReducers: (builder) => {
         builder
             .addCase(loginAction.pending, (state) => {

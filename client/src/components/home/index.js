@@ -63,7 +63,7 @@ const Home = (props) => {
 
     const updateStudent = async (data, id) => {
         await dispatch(updateStudentAction({ data, id }));
-        setExpandedRows({});
+        dispatch(loadStudentsByIdAction(id));
         dispatch(loadStudentsAction(studentPaginationProps));
     }
 

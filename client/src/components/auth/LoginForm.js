@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 
 const LoginForm = (props) => {
 
-    const { doLogin } = props;
+    const { doLogin, authState } = props;
 
     const formik = useFormik({
         initialValues: {
@@ -65,7 +65,7 @@ const LoginForm = (props) => {
             </div>
             <div className="form-row mt-2">
                 <Col xs={12} className="text-center">
-                    <Button type="submit" variant={'primary'} disabled={formik.errors.userName || formik.errors.password}>
+                    <Button type="submit" variant={'primary'} disabled={formik.errors.userName || formik.errors.password || authState?.loading}>
                         Login
                     </Button>
                 </Col>
